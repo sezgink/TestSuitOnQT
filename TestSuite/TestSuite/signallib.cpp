@@ -45,13 +45,13 @@ void SignalLib::FFT(std::vector<std::complex<float>>& x){
         size_t m = 1 << s;           // m = 2^s
         size_t m2 = m >> 1;          // m2 = m/2
         float theta = -2.0f * PI / m;
-        std::complex<float>; wm(std::cos(theta), std::sin(theta));
+        std::complex<float> wm(std::cos(theta), std::sin(theta));
 
         for (size_t k = 0; k < N; k += m) {
-            std::complex<float>; w(1.0f, 0.0f);
+            std::complex<float> w(1.0f, 0.0f);
             for (size_t j = 0; j < m2; ++j) {
-                std::complex<float>; t = w * x[k + j + m2];
-                std::complex<float>; u = x[k + j];
+                std::complex<float> t = w * x[k + j + m2];
+                std::complex<float> u = x[k + j];
                 x[k + j] = u + t;
                 x[k + j + m2] = u - t;
                 w *= wm;
@@ -63,12 +63,12 @@ void SignalLib::FFT(std::vector<std::complex<float>>& x){
 void SignalLib::PrepareAndFFT(std::vector<std::complex<float>>& x){
     const size_t N = x.size();
 
-    if (!isPowerOfTwo(N)) {
+    if (!IsPowerOfTwo(N)) {
         size_t nextN = NextPowerOfTwo(N);
         size_t dif = nextN - N;
 
         for (size_t i = 0; i < dif; ++i) { //Fill remaining with zero padding for Cooley–Tukey adaptation
-            x.push_back(std::complex<float>(0f,0f));
+            x.push_back(std::complex<float>(0.f,0.f));
         }
     }
 
