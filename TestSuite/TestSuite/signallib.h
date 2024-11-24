@@ -21,5 +21,3 @@ public:
     void PrepareAndFFT(std::vector<std::complex<float>>& x); //For non power of 2 input prepare data
 
 };
-
-#endif // SIGNALLIB_H
