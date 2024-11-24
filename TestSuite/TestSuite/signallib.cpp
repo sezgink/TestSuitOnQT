@@ -10,7 +10,7 @@ bool SignalLib::IsPowerOfTwo(size_t n) {
 
 // Function to compute the next power of two greater than or equal to n
 size_t SignalLib::NextPowerOfTwo(size_t n) {
-    if (isPowerOfTwo(n)) return n;
+    if (IsPowerOfTwo(n)) return n;
     size_t power = 1;
     while (power < n) power <<= 1;
     return power;
@@ -19,7 +19,7 @@ void SignalLib::FFT(std::vector<std::complex<float>>& x){
     const size_t N = x.size();
 
     // Check if N is a power of 2
-    if (!isPowerOfTwo(N)) {
+    if (!IsPowerOfTwo(N)) {
         std::cerr << "Error: FFT input size must be a power of 2.\n";
         exit(EXIT_FAILURE);
     }
@@ -64,7 +64,7 @@ void SignalLib::PrepareAndFFT(std::vector<std::complex<float>>& x){
     const size_t N = x.size();
 
     if (!isPowerOfTwo(N)) {
-        size_t nextN = nextPowerOfTwo(N);
+        size_t nextN = NextPowerOfTwo(N);
         size_t dif = nextN - N;
 
         for (size_t i = 0; i < dif; ++i) { //Fill remaining with zero padding for Cooley–Tukey adaptation
