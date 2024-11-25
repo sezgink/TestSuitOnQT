@@ -68,7 +68,7 @@ void SignalLib::PrepareAndFFT(std::vector<std::complex<float>>& x){
         size_t dif = nextN - N;
 
         for (size_t i = 0; i < dif; ++i) { //Fill remaining with zero padding for Cooley–Tukey adaptation
-            x.push_back(std::complex<float>(0.f,0.f));
+            x.emplace_back(0.f,0.f);
         }
     }
 
