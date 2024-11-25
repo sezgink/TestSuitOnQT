@@ -79,6 +79,10 @@ void SerialHandler::handleReadyRead()
 
 
         emit newDataReceived(buffer);
+
+        lastBuffer = buffer;
+        lastBuffer.data();
+
         buffer.clear();
     }
 }

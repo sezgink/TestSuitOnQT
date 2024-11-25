@@ -44,4 +44,5 @@ private slots:
 private:
     QSerialPort *serial;
     QByteArray buffer;
+    QByteArray lastBuffer;
 };
