@@ -28,6 +28,8 @@ public:
     // Check if the port is open
     bool isOpen() const;
 
+    void preprocessData(QByteArray &data);
+
 signals:
     // Emitted when new data is received
     void newDataReceived(const QByteArray &data);

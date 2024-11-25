@@ -1,6 +1,6 @@
 #include "serialhandler.h"
 
-// Constructor: Initializes the QSerialPort and connects signals to slots
+// Initialize serial port on contruction
 SerialHandler::SerialHandler(QObject *parent)
     : QObject(parent),
     serial(new QSerialPort(this))
@@ -12,7 +12,7 @@ SerialHandler::SerialHandler(QObject *parent)
     connect(serial, &QSerialPort::errorOccurred, this, &SerialHandler::handleError);
 }
 
-// Destructor: Ensures the serial port is closed properly
+// Closing serial port on destructor
 SerialHandler::~SerialHandler()
 {
     if (serial->isOpen()) {
@@ -75,12 +75,17 @@ void SerialHandler::handleReadyRead()
         buffer.append(data);
 
         //Data will process here WIP
+        preprocessData(buffer);
+
 
         emit newDataReceived(buffer);
         buffer.clear();
     }
 }
 
+void SerialHandler::preprocessData(QByteArray &data){
+    //Preprocess here
+}
 // Handle errors when errorOccurred signal is emitted
 void SerialHandler::handleError(QSerialPort::SerialPortError error)
 {
