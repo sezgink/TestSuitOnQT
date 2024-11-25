@@ -13,8 +13,6 @@ MainWindow::MainWindow(QWidget *parent)
     angular_vel_str = "0 m/s";
     ui->angular_vel_label->setText(angular_vel_str.c_str());
 
-    x +=1;
-
     connect(ui->pushButton, &QPushButton::clicked, this, [this]() {
         counter ++;
         angular_vel_str = std::to_string(counter) + " /s";
